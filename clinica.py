@@ -1,3 +1,4 @@
+import datetime
 from paciente import Paciente
 from especialidade import Especialidade
 from atendimento import Atendimento
@@ -121,7 +122,7 @@ class Clinica:
 
 # METODO PARA GERENCIAR ATENDIMENTOS
 
-    def agendar_atendimento(self,id_paciente, id_especialidade, data_hora):
+    def agendar_atendimento(self,id_paciente, id_especialidade):
         
         paciente = self.buscar_paciente_id(id_paciente)
         especialidade = self.buscar_especialidade_id(id_especialidade)
@@ -132,8 +133,10 @@ class Clinica:
         if not especialidade:
             print(">> ERRO: Especialidade não encontrada. <<")
             return
-        #perguntar ao gemini
-        novo_atendimento = Atendimento(self.proximo_id_atendimento, paciente, especialidade, data_hora)
+        
+        data_agendamento = datetime.datetime.now()
+
+        novo_atendimento = Atendimento(self.proximo_id_atendimento, paciente, especialidade, data_agendamento)
         self.atendimentos.append(novo_atendimento)
         self.proximo_id_atendimento += 1
         print("\n>> Atendimento agendado com sucesso! <<")

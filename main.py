@@ -39,8 +39,7 @@ def menu_principal():
             minha_clinica.listar_especialidade()
             id_paciente = int(input("Digite o ID do Paciente: "))
             id_espec = int(input("Digite o ID da Especialidade: "))
-            data_hora = input("Digite a data e hora (ex: 20/10/2025 14:30): ")
-            minha_clinica.agendar_atendimento(id_paciente, id_espec, data_hora)
+            minha_clinica.agendar_atendimento(id_paciente, id_espec)
         elif opcao == '6':
             minha_clinica.listar_atendimentos()
         elif opcao == '7':
