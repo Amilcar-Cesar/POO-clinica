@@ -1,4 +1,3 @@
-import datetime
 class Atendimento:
     def __init__(self, id, paciente, especialidade, data_hora, status="Agendado"):
         self.id = id

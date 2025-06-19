@@ -1,8 +1,4 @@
-from atendimento import Atendimento
 from clinica import Clinica
-from especialidade import Especialidade
-from paciente import Paciente
-
 
 def menu_principal():
     minha_clinica = Clinica()
@@ -32,18 +28,19 @@ def menu_principal():
                 data = input("Data de nascimento (DD/MM/AAAA): ")
                 tel = input("Telefone: ")
                 minha_clinica.adicionar_paciente(nome, data, tel)
+            
             elif op_paciente == '2':
                 minha_clinica.listar_pacientes()
+            
             elif op_paciente == '3':
-                # CORRIGIDO: Faltava pedir o ID
                 id_paciente = int(input("Digite o ID do paciente a ser atualizado: "))
                 minha_clinica.atualizar_paciente(id_paciente)
-            elif op_paciente == '4': # CORRIGIDO: Verificando op_paciente em vez de opcao
-                # CORRIGIDO: Faltava pedir o ID
+            
+            elif op_paciente == '4':     
                 id_paciente = int(input("Digite o ID do paciente a ser removido: "))
                 minha_clinica.remover_paciente(id_paciente)
             
-        # CORRIGIDO: Usando ELIF
+        
         elif opcao == '2':
             print("\n--- Gerenciar Especialidades ---")
             print("1 - Adicionar especialidade")
@@ -58,7 +55,7 @@ def menu_principal():
                 minha_clinica.adicionar_especialidade(especialidade)
             elif op_espec == '2':
                 
-                minha_clinica.listar_especialidade()
+                minha_clinica.listar_especialidades()
             elif op_espec == '3':
                  
                 id_espec = int(input("Digite o ID da especialidade a ser atualizada: "))
@@ -80,7 +77,7 @@ def menu_principal():
             if op_atend == '1':
                 print("\n--- Agendar Novo Atendimento ---")
                 minha_clinica.listar_pacientes()
-                minha_clinica.listar_especialidade() 
+                minha_clinica.listar_especialidades() 
                 id_paciente = int(input("Digite o ID do Paciente: ")) 
                 id_espec = int(input("Digite o ID da Especialidade: "))
                 minha_clinica.agendar_atendimento(id_paciente, id_espec)
