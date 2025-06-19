@@ -88,12 +88,12 @@ def menu_principal():
                 novo_status = input("Digite o novo status (Ex: Realizado, Cancelado): ")
                 minha_clinica.atualizar_status_atendimento(id_atend, novo_status)
         
-        # CORRIGIDO: Usando ELIF
+        
         elif opcao == '4':
             print("Saindo do sistema. Até logo!")
             break
         
-        # Agora este ELSE só será executado se nenhuma das opções (1, 2, 3, 4) for escolhida.
+        
         else:
             print("Opção inválida. Tente novamente.")
 
