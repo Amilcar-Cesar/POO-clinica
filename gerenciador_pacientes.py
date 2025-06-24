@@ -1,36 +1,68 @@
 from paciente import Paciente
+import sqlite3
 
 class GerenciadorPacientes:
-    def __init__(self):
-        self.lista_pacientes = []
-        self.proximo_id_paciente = 1
+    def __init__(self, db_name='clinica.db'):
+        self.db_name = db_name
+        
 
     
     def adicionar_paciente(self, nome, data_nascimento, telefone):
 
-        novo_paciente =  Paciente(self.proximo_id_paciente, nome, data_nascimento, telefone) 
-        self.lista_pacientes.append(novo_paciente)
-        self.proximo_id_paciente += 1
+        banco = sqlite3.connect(self.db_name)
+        cursor = banco.cursor()
+        cursor.execute(
+            "INSERT INTO pacientes(nome, data_nascimento, telefone) VALUES (?, ?, ?)", (nome, data_nascimento, telefone)
+        )
+        banco.commit()
+        banco.close()
 
         print("\n >> Paciente adicionado com sucesso! <<")
         print("==========================================\n")
 
     def listar_pacientes(self):
 
+        banco = sqlite3.connect(self.db_name)
+        cursor = banco.cursor()
+
+        cursor.execute("SELECT * FROM pacientes")
+        pacientes_encontrados = cursor.fetchall()
+        
+        lista_de_objetos_paciente = []
+        banco.close()
+        
         print("\n --- Lista de Pacientes ---")
-        if not self.lista_pacientes:
+        
+        if not pacientes_encontrados:
             print("Nenhum paciente cadastrado.")
         else:
-            for paciente in self.lista_pacientes:
-                print(paciente)
-        print("==========================================\n")
+            for p in pacientes_encontrados:
+                paciente = Paciente(id=p[0],nome=p[1],data_nascimento=p[2],telefone=p[3])
+                lista_de_objetos_paciente.append(paciente)
+        
+        return lista_de_objetos_paciente
+        
+        
 
     def buscar_paciente_id(self, id_paciente):
         
-        for paciente in self.lista_pacientes:
-            if paciente.id == id_paciente:
-                return paciente
+        banco = sqlite3.connect(self.db_name)
+        cursor = banco.cursor()
+        cursor.execute("SELECT * FROM pacientes WHERE id = ?", (id_paciente,))
+        resultado = cursor.fetchone()
+        banco.close()
+
+        if resultado:
+            return Paciente(
+                id=resultado[0],
+                nome=resultado[1],
+                data_nascimento=resultado[2],
+                telefone=resultado[3]
+            )
+    
         return None
+
+        
     
     def atualizar_paciente(self, id_paciente):
 
@@ -52,12 +84,19 @@ class GerenciadorPacientes:
 
     def remover_paciente(self, id_paciente):
         
+        banco = sqlite3.connect(self.db_name)
+        cursor = banco.cursor()
         paciente = self.buscar_paciente_id(id_paciente)
-
+        
         if paciente:
-            print(f"Deletando paciente {paciente.nome} \n")
-            self.lista_pacientes.remove(paciente)
             print("=====================================================\n")
-            print("Paciente removido com sucesso!")
+            print(f"Deletando paciente {paciente.nome} \n")
+            cursor.execute("DELETE FROM pacientes WHERE id= ?", (id_paciente,))
+            print("Paciente removido com sucesso!\n")
+            banco.commit()
         else:
             print(f"ERRO: Paciente id {paciente.id} não encontrado!")
+        
+        banco.close()
+        
+        

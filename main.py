@@ -30,7 +30,10 @@ def menu_principal():
                 minha_clinica.adicionar_paciente(nome, data, tel)
             
             elif op_paciente == '2':
-                minha_clinica.listar_pacientes()
+                lista_pacientes = minha_clinica.listar_pacientes()
+
+                for paciente_obj in lista_pacientes:
+                    print(paciente_obj)
             
             elif op_paciente == '3':
                 id_paciente = int(input("Digite o ID do paciente a ser atualizado: "))

@@ -15,7 +15,7 @@ class Clinica:
         self.gerenciador_pacientes.adicionar_paciente(nome, data_nascimento, telefone)
     
     def listar_pacientes(self):
-        self.gerenciador_pacientes.listar_pacientes()
+        return self.gerenciador_pacientes.listar_pacientes()
    
     def atualizar_paciente(self,id_paciente):
         self.gerenciador_pacientes.atualizar_paciente(id_paciente)
@@ -29,7 +29,7 @@ class Clinica:
         self.gerenciador_especialidades.adicionar_especialidade(nome)
 
     def listar_especialidades(self):
-        self.gerenciador_especialidades.listar_especialidades()
+        return self.gerenciador_especialidades.listar_especialidades()
 
     def atualizar_especialidade(self,id_especialidade):
         self.gerenciador_especialidades.atualizar_especialidade(id_especialidade)
@@ -43,7 +43,7 @@ class Clinica:
         self.gerenciador_atendimentos.agendar_atendimento(id_paciente,id_especialidade)
 
     def listar_atendimentos(self):
-        self.gerenciador_atendimentos.listar_atendimentos()
+        return self.gerenciador_atendimentos.listar_atendimentos()
 
     def atualizar_status_atendimento(self,id_atendimento, novo_status):
         self.gerenciador_atendimentos.atualizar_status_atendimento(id_atendimento, novo_status)
