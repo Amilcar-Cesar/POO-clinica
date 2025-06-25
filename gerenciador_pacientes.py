@@ -6,7 +6,8 @@ class GerenciadorPacientes:
         self.db_name = db_name
         
 
-    
+
+#=============================================================================    
     def adicionar_paciente(self, nome, data_nascimento, telefone):
 
         banco = sqlite3.connect(self.db_name)
@@ -20,6 +21,8 @@ class GerenciadorPacientes:
         print("\n >> Paciente adicionado com sucesso! <<")
         print("==========================================\n")
 
+
+#=============================================================================
     def listar_pacientes(self):
 
         banco = sqlite3.connect(self.db_name)
@@ -43,7 +46,7 @@ class GerenciadorPacientes:
         return lista_de_objetos_paciente
         
         
-
+#=============================================================================
     def buscar_paciente_id(self, id_paciente):
         
         banco = sqlite3.connect(self.db_name)
@@ -62,8 +65,8 @@ class GerenciadorPacientes:
     
         return None
 
-        
-    
+
+#=============================================================================
     def atualizar_paciente(self, id_paciente):
 
         paciente = self.buscar_paciente_id(id_paciente)
@@ -74,14 +77,19 @@ class GerenciadorPacientes:
             nova_data = input(f"Nova data de nascimento(atual:{paciente.data_nascimento}): ")
             novo_telefone = input(f"Novo telefone (atual:{paciente.telefone}): ")
 
-            paciente.nome = novo_nome
-            paciente.data_nascimento = nova_data
-            paciente.telefone = novo_telefone
-            
+            banco = sqlite3.connect(self.db_name)
+            cursor = banco.cursor()
+            cursor.execute(""" UPDATE pacientes 
+                            SET nome = ?, data_nascimento = ?, telefone = ?
+                            WHERE id = ?""",(novo_nome, nova_data, novo_telefone, id_paciente))
+            banco.commit()
+            banco.close()            
             print("\n>> Paciente atualizado com sucesso! <<")
         else:
             print(f"\nERRO: Paciente com ID {id_paciente} não encontrado!")
 
+
+#=============================================================================
     def remover_paciente(self, id_paciente):
         
         banco = sqlite3.connect(self.db_name)
@@ -95,7 +103,7 @@ class GerenciadorPacientes:
             print("Paciente removido com sucesso!\n")
             banco.commit()
         else:
-            print(f"ERRO: Paciente id {paciente.id} não encontrado!")
+            print(f"ERRO: Paciente id {id_paciente} não encontrado!")
         
         banco.close()
         

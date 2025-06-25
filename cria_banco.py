@@ -15,5 +15,13 @@ CREATE TABLE IF NOT EXISTS pacientes (
 
 print("Tabela criada com sucesso!")
 
+print("Criando a tabela especialidades")
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS especialidades(
+               id INTEGER PRIMARY KEY AUTOINCREMENT,
+               nome TEXT NOT NULL UNIQUE); """)
+
+print("Tabela criada com sucesso!")
 banco.commit()
 banco.close()

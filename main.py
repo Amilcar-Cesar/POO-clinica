@@ -54,17 +54,19 @@ def menu_principal():
             op_espec = input("Digite o número da ação que deseja: ")
 
             if op_espec == '1':
-                especialidade = input("Nome da nova especialidade: ")
+                especialidade = input("Nome da nova especialidade: ").capitalize()
                 minha_clinica.adicionar_especialidade(especialidade)
+            
             elif op_espec == '2':
-                
-                minha_clinica.listar_especialidades()
+                especialidades = minha_clinica.listar_especialidades()
+                for espec_obj in especialidades:
+                    print(espec_obj)
+            
             elif op_espec == '3':
-                 
                 id_espec = int(input("Digite o ID da especialidade a ser atualizada: "))
                 minha_clinica.atualizar_especialidade(id_espec)
-            elif op_espec == '4':
-            
+           
+            elif op_espec == '4': 
                 id_remover = int(input("Informe o ID da especialidade a ser removida: "))
                 minha_clinica.remover_especialidade(id_remover)
 
