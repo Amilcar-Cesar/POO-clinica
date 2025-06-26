@@ -1,7 +1,6 @@
 import sqlite3
 
 banco = sqlite3.connect("clinica.db")
-
 cursor = banco.cursor()
 
 print("Criando a tabela  'Pacientes'...")

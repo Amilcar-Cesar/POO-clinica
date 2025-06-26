@@ -128,7 +128,7 @@ def menu_principal():
                 espec_encontrada = minha_clinica.gerenciador_especialidades.buscar_especialidade_id(id_espec)
 
                 if espec_encontrada:
-                    novo_nome = input(f"Digite o nome da especialidade(atual{espec_encontrada.nome}): ").capitalize()
+                    novo_nome = input(f"Digite o nome da especialidade(atual: {espec_encontrada.nome}): ").capitalize()
                     minha_clinica.atualizar_especialidade(id_espec, novo_nome)
                 else:
                     print(f">> ERRO: Especialidade com ID {id_espec} não encontrada.")
@@ -149,16 +149,28 @@ def menu_principal():
 
             if op_atend == '1':
                 print("\n--- Agendar Novo Atendimento ---")
-                minha_clinica.listar_pacientes()
-                minha_clinica.listar_especialidades() 
-                id_paciente = int(input("Digite o ID do Paciente: ")) 
+                pacientes = minha_clinica.listar_pacientes()
+                for p_obj in pacientes:
+                    print(p_obj)
+                
+                print("\n======================================")
+
+                especialidades = minha_clinica.listar_especialidades()
+                for e_obj in especialidades:
+                    print(e_obj) 
+                
+                id_paciente = int(input("\nDigite o ID do Paciente: ")) 
                 id_espec = int(input("Digite o ID da Especialidade: "))
                 minha_clinica.agendar_atendimento(id_paciente, id_espec)
+            
             elif op_atend == '2': 
-                minha_clinica.listar_atendimentos()
+                atendimentos = minha_clinica.listar_atendimentos()
+                for at_obj in atendimentos:
+                    print(f"\n{at_obj}")
+                    
             elif op_atend == '3':
                 id_atend = int(input("Digite o ID do Atendimento a ser atualizado: "))
-                novo_status = input("Digite o novo status (Ex: Realizado, Cancelado): ")
+                novo_status = input("Digite o novo status (Ex: Realizado, Cancelado): ").upper()
                 minha_clinica.atualizar_status_atendimento(id_atend, novo_status)
         #=================================================================
    

@@ -78,7 +78,7 @@ class GerenciadorPacientes:
                 WHERE id = ?
             """, (novo_nome, nova_data, novo_telefone, id_paciente))
             
-            # verifica se alguma linha foi de fato alterada
+            
             if cursor.rowcount == 0:
                 print(f"\n>> ERRO: Paciente com ID {id_paciente} não encontrado para atualização. <<")
             else:
