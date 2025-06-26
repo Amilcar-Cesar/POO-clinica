@@ -42,14 +42,14 @@ class GerenciadorAtendimentos:
 
 
     def buscar_atendimento(self,id_atendimento):
-        
+        #SELECT 
         for atendimento in self.atendimentos:
             if atendimento.id == id_atendimento:
                 return atendimento
         return None
     
     def atualizar_status_atendimento(self, id_atendimento, novo_status):
-
+        #SET atendimentos WHERE status = ?
         atendimento = self.buscar_atendimento(id_atendimento)
 
         if atendimento:

@@ -17,8 +17,11 @@ class Clinica:
     def listar_pacientes(self):
         return self.gerenciador_pacientes.listar_pacientes()
    
-    def atualizar_paciente(self,id_paciente):
-        self.gerenciador_pacientes.atualizar_paciente(id_paciente)
+    def buscar_paciente_id(self, id_paciente):
+        return self.gerenciador_pacientes.buscar_paciente_id(id_paciente)
+
+    def atualizar_paciente(self,id_paciente, novo_nome, nova_data, novo_telefone):
+        self.gerenciador_pacientes.atualizar_paciente(id_paciente,  novo_nome, nova_data, novo_telefone)
    
     def remover_paciente(self,id_paciente):
         self.gerenciador_pacientes.remover_paciente(id_paciente)
@@ -31,8 +34,11 @@ class Clinica:
     def listar_especialidades(self):
         return self.gerenciador_especialidades.listar_especialidades()
 
-    def atualizar_especialidade(self,id_especialidade):
-        self.gerenciador_especialidades.atualizar_especialidade(id_especialidade)
+    def buscar_especialidade_id(self, id_especialidade):
+        return self.gerenciador_especialidades.buscar_especialidade_id
+
+    def atualizar_especialidade(self,id_especialidade, novo_nome):
+        self.gerenciador_especialidades.atualizar_especialidade(id_especialidade, novo_nome )
 
     def remover_especialidade(self,id_especialidade):
         self.gerenciador_especialidades.remover_especialidade(id_especialidade)
