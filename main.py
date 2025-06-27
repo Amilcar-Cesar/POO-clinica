@@ -110,7 +110,8 @@ def menu_principal():
             print("1 - Adicionar especialidade")
             print("2 - Listar especialidades")
             print("3 - Atualizar especialidade")
-            print("4 - Remover especialidade")            
+            print("4 - Remover especialidade") 
+                      
             op_espec = input("Digite o número da ação que deseja: ")
 
             if op_espec == '1':

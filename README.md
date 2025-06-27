@@ -12,5 +12,7 @@ Objetivo:
 
 Futuras melhorias:
 - Criar uma verificação de login.
-- Adicionar um banco de dados.
+- Fazer um menu interno para atualização do status de atendimento.
+- Colocar uma forma de agendamento manual.
+- Mudar a parte de agendamento para relatorio/ historico. 
 - Ampliar a usabilidade para uma aplicação WEB. 
